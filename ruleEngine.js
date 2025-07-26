@@ -15,7 +15,7 @@ function matchesConditions(rule, player) {
   if (cond.maxLevel !== undefined && player.playerLevel > cond.maxLevel) return false;
   if (cond.spendTier && player.spendTier !== cond.spendTier) return false;
 
-  // ✅ Country support for string and array
+ 
   if (cond.country) {
     if (Array.isArray(cond.country)) {
       if (!cond.country.includes(player.country)) return false;
@@ -31,7 +31,7 @@ function matchesConditions(rule, player) {
 
   if (cond.abBucket && player.abBucket !== cond.abBucket) return false;
 
-  // ✅ Time window check
+
   if ((cond.startTime || cond.endTime)) {
     const now = new Date();
     if (cond.startTime && now < new Date(cond.startTime)) return false;
@@ -42,7 +42,7 @@ function matchesConditions(rule, player) {
 }
 
 
-// ✅ Weighted random selection
+
 function weightedRandom(promotions) {
   const totalWeight = promotions.reduce((sum, p) => sum + (p.weight || 1), 0);
   const rand = Math.random() * totalWeight;
@@ -77,7 +77,7 @@ function evaluate(player) {
 
   if (matchingPromotions.length === 0) return null;
 
-  // ✅ Weighted selection
+
   return weightedRandom(matchingPromotions);
 }
 

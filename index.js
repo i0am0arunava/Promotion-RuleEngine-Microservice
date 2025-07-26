@@ -1,4 +1,4 @@
-// index.js
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const ruleEngine = require('./ruleEngine');
@@ -8,7 +8,7 @@ const ruleLoader = require('./ruleLoader');
 const app = express();
 app.use(bodyParser.json());
 
-// Load rules at startup
+
 ruleLoader.loadRules();
 
 app.post('/promotion', (req, res) => {

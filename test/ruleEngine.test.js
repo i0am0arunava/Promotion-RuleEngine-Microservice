@@ -61,7 +61,7 @@ describe('Promotion Rule Engine', () => {
       daysSinceLastPurchase: 50,
     };
 
-    // Note: FR is unsupported, but this test assumes only evaluate() is tested directly
+   
     const promo = ruleEngine.evaluate(player);
     expect(promo).toBeNull();
   });
@@ -70,7 +70,7 @@ describe('Promotion Rule Engine', () => {
     const incompletePlayer = {
       playerLevel: 15,
       country: 'US'
-      // spendTier and daysSinceLastPurchase missing
+   
     };
 
     expect(() => ruleEngine.evaluate(incompletePlayer)).toThrow('Missing required player attributes');
