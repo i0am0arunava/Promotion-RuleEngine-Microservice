@@ -223,9 +223,59 @@ function getBestPromotion(playerData) {
 
 module.exports = { getBestPromotion };
 ```
-### Reflection Note – Design Choices & AI Tool Usage
 
-- Took help from AI to fix bug inside the code
-- Took help from AI to load and validate structured YAML configuration.
-- Also used AI to generate all possible test cases and edge cases for thorough testing.
+
+## Reflection Note – Design Choices, Trade-offs & AI Tool Usage
+
+### a. Design Choices
+
+#### i. Reasoning Behind Major Design Choices
+
+- **Encapsulation via `ruleEngine.js`**: The core logic for rule checking is placed in a separate file. This keeps the code clean, easy to manage, and makes testing or adding new rules easier without affecting other parts like routes.
+  
+- **YAML for Rule Configuration**: YAML was chosen because it's easy to read and edit, even for non-developers. This allows business teams to write or update rules without needing coding skills.
+
+#### ii. Alternative Approaches Considered
+
+- **Hardcoding Rules in JavaScript**: We first thought of writing all rules directly in the code, but that would make updates harder and tie the logic too closely to the application code.
+
+- **Using JSON Instead of YAML**: JSON was also an option, but YAML supports comments and is easier to read, which is helpful when rules need to be explained or maintained by non-engineers.
+
+---
+
+### b. Trade-offs
+
+#### i. Performance vs. Readability
+
+- **Metrics Calculation**: The `/metrics` route tracks performance and request stats. While it adds a small overhead, it's very helpful for debugging and monitoring the system.
+
+- **Abstraction Overhead**: We use a `getBestPromotion()` function to keep things modular and easy to maintain. This adds a small layer of extra processing but makes the system easier to understand and extend.
+
+#### ii. Memory vs. Simplicity
+
+- **In-Memory Rule Loading**: Rules are loaded into memory once when the app starts. This speeds up rule access but uses more memory.
+
+- **Simple Matching Logic**: We use a basic linear search to find matching rules. It’s easy to read and works well for a small number of rules. For larger systems, more optimized methods could be used.
+
+---
+
+### c. Areas of Uncertainty
+
+#### i. Rule Matching Priority
+
+- We weren’t sure whether rules should have a priority system or if the first match in the list should be returned. For now, we assume that rules are either mutually exclusive or ordered carefully in the YAML file.
+
+#### ii. Schema Validation Robustness
+
+- We parse the YAML file using `js-yaml` and check its structure manually. We thought about using a strict schema validator like `ajv`, but decided it's not needed for this project’s current scale.
+
+---
+
+### d. AI Tool Usage
+ - Took help from AI to fix bug inside the code
+ - Also used AI to generate all possible test cases and edge cases for thorough testing.
+ - Took help from AI to load and validate structured YAML configuration.
+
+
+
 
