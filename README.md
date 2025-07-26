@@ -225,7 +225,7 @@ module.exports = { getBestPromotion };
 ```
 ### Reflection Note – Design Choices & AI Tool Usage
 
-- Required thinking abstractly to support various rule conditions like `playerLevel`, `abBucket`, time constraints, etc.
+- Took help from AI to fix bug inside the code
 - Took help from AI to load and validate structured YAML configuration.
 - Also used AI to generate all possible test cases and edge cases for thorough testing.
 
