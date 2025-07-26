@@ -10,6 +10,7 @@ This is a microservice for evaluating and applying promotional rules based on pl
 ## Installation
 
 ```bash
+git clone https://github.com/i0am0arunava/Promotion-RuleEngine-Microservice.git
 cd Promotion-RuleEngine-Microservice
 npm install
 node index.js
